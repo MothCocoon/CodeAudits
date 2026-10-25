@@ -1,6 +1,6 @@
 ---
 name: resolve-weakptrs-once
-description: Audit C++/Unreal code for redundant TWeakObjectPtr resolves: the "double lookup" where a weak pointer is validated with IsValid() (or implicitly) and then dereferenced again via .Get(), operator->, implicit T* conversion, or *. Use when asked to check/fix double lookup of weak pointers, redundant IsValid/Get, or weak-pointer dereference patterns. Finds every case in a single pass, lists them as a table, then collapses each to one .Get() with a null check.
+description: Audit C++/Unreal code for redundant TWeakObjectPtr resolves, the "double lookup" where a weak pointer is validated with IsValid() (or implicitly) and then dereferenced again via .Get(), operator->, implicit T* conversion, or *. Use when asked to check/fix double lookup of weak pointers, redundant IsValid/Get, or weak-pointer dereference patterns. Finds every case in a single pass, lists them as a table, then collapses each to one .Get() with a null check.
 ---
 
 # TWeakObjectPtr redundant-resolve audit
