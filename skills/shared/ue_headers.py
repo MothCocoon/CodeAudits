@@ -101,10 +101,12 @@ def parse_bases(s):
 def normalize_param(p):
     p = p.split("=")[0]
     p = re.sub(r"\b(class|struct|enum|typename)\b", " ", p)
+    # parameter annotation macros
+    p = re.sub(r"\b(IN|OUT)\b", " ", p)
     p = re.sub(r"\s+", " ", p).strip()
-    # drop the parameter name
-    m = re.match(r"^(.*?[\w>*&\]])\s+(\w+)$", p)
-    if m and m.group(1) not in ("const", "unsigned", "signed"):
+    # drop the parameter name, also when glued to * or &
+    m = re.match(r"^(.*?(?:[\w>\]] |[*&] ?))(\w+)$", p)
+    if m and m.group(1).strip() not in ("const", "unsigned", "signed"):
         p = m.group(1)
     p = p.replace(" ", "")
     # top-level const on a by-value parameter is not part of the signature
