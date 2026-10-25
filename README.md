@@ -5,6 +5,8 @@ Each skill looks for one kind of issue, lists the findings for approval, then ed
 
 ## Skills
 
+### Cosmetic
+
 | Skill | What it does |
 |---|---|
 | `fix-source-headers` | Strips UTF-8 BOM, normalizes the copyright line and the spacing around `#pragma once` and the first includes. |
@@ -13,8 +15,14 @@ Each skill looks for one kind of issue, lists the findings for approval, then ed
 | `add-override-keywords` | Adds missing `virtual` and `override`, including overrides declared with neither. |
 | `align-override-access` | Aligns access levels of overrides with the base virtual, keeping overrides that outside code calls through the derived type. |
 | `order-definitions-by-header` | Orders function definitions in `.cpp` like declarations in the header. |
-| `replace-tsubclassof` | Switches serialized `TSubclassOf` references to `TSoftClassPtr` where it removes a hard load. |
+
+### Functional
+
+| Skill | What it does |
+|---|---|
+| `fix-tobjectptr-usage` | Replaces raw object pointers in UPROPERTY members with `TObjectPtr` and removes redundant `nullptr` initializers of `TObjectPtr`. |
 | `resolve-weakptrs-once` | Resolves each weak pointer once into a local and adds missing null checks. |
+| `replace-tsubclassof` | Switches serialized `TSubclassOf` references to `TSoftClassPtr` where it removes a hard load. |
 
 Every skill ends with a change description. One skill makes one change: a git commit, a Perforce changelist or a Lore commit.
 Version control specifics live in `skills/shared/vcs/`, one file per system.

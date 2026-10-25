@@ -18,6 +18,8 @@ Run the skills below one at a time, in this order. Each step:
 A step with no findings is reported in one line and the run moves on.
 The user may skip steps or stop the run, the order of the remaining steps stays.
 
+### Cosmetic
+
 | # | Skill | Why here | Build before recording |
 |---|---|---|---|
 | 1 | `fix-source-headers` | Touches the top of every file. Without BOM, later parsers and diffs work cleanly. | |
@@ -26,8 +28,14 @@ The user may skip steps or stop the run, the order of the remaining steps stays.
 | 4 | `add-override-keywords` | The compiler confirms the set of overrides. | |
 | 5 | `align-override-access` | Works on the confirmed set of overrides. Inserts specifiers without moving declarations. | yes |
 | 6 | `order-definitions-by-header` | Pure moves, a large diff on the first run. Done before functional changes, so their diffs stay small and land in the final layout. | |
-| 7 | `replace-tsubclassof` | Functional change: getter API and its callers. | yes |
+
+### Functional
+
+| # | Skill | Why here | Build before recording |
+|---|---|---|---|
+| 7 | `fix-tobjectptr-usage` | Type fixes in declarations and their call sites. | yes |
 | 8 | `resolve-weakptrs-once` | Functional change inside function bodies. | |
+| 9 | `replace-tsubclassof` | Functional change: getter API and its callers. | yes |
 
 ## Review mode
 

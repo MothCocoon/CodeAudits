@@ -21,8 +21,6 @@ If the declaration already has the same value, only remove the constructor entry
 If the value is plain default construction of a class type (`FGuid()`, `FString()`, `Widget()`),
 only remove the constructor entry, the declaration gets no initializer.
 The same applies to `nullptr` for `TObjectPtr` members, which default to null.
-Existing `TObjectPtr<...> Name = nullptr;` declarations lose the initializer too, members and
-local variables alike.
 
 Move only when all of these hold, otherwise leave the code and report the case:
 - The member is declared in the class itself. Inherited members set in a subclass constructor
@@ -127,7 +125,6 @@ candidate too: without the inlining include UBT compiles `<Name>.gen.cpp` on its
 code audit: set default property values at declarations
 
 * Moved initializations from constructors, everywhere where this was practical.
-* TObjectPtr doesn't need nullptr assigned.
 * Removed now empty constructors.
 * Removed now empty cpp files.
 ```
