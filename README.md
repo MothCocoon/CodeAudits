@@ -18,7 +18,7 @@ Each skill looks for one kind of issue, lists the findings for approval, then ed
 
 Every skill ends with a change description. One skill makes one change: a git commit, a Perforce changelist or a Lore commit.
 Version control specifics live in `skills/shared/vcs/`, one file per system.
-To run all of them in the order above, use `run-all-audits`.
+To run all of them in the order above, use `run-all-audits`. Its review mode audits only the files of a pull request or changelist and puts all fixes into one change.
 
 ## Install
 

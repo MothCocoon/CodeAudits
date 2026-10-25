@@ -1,6 +1,6 @@
 ---
 name: run-all-audits
-description: Run every code audit skill of the CodeAudits repo on an Unreal plugin or project in the recommended order, one skill per change. Use when asked to run all audits, a full code audit pass, or the audits in order.
+description: Run every code audit skill of the CodeAudits repo on an Unreal plugin or project in the recommended order, one skill per change. Use when asked to run all audits, a full code audit pass, the audits in order, or to audit a pull request or a changelist under review.
 ---
 
 # Run all audits
@@ -12,8 +12,8 @@ Run the skills below one at a time, in this order. Each step:
 
 1. Check that the audited folder has no pending changes, so the step's change holds only its own edits.
 2. Load the skill and follow it: report, approval, fixes.
-3. When the step can break compilation, stop for a build before the change is recorded.
-4. Hand over the change description from the skill and wait until the change is recorded or the step is skipped.
+3. When the step can break compilation, stop for a build before the user records the change.
+4. Hand over the change description from the skill and wait until the user records the change or skips the step.
 
 A step with no findings is reported in one line and the run moves on.
 The user may skip steps or stop the run, the order of the remaining steps stays.
@@ -28,3 +28,19 @@ The user may skip steps or stop the run, the order of the remaining steps stays.
 | 6 | `order-definitions-by-header` | Pure moves, a large diff on the first run. Done before functional changes, so their diffs stay small and land in the final layout. | |
 | 7 | `replace-tsubclassof` | Functional change: getter API and its callers. | yes |
 | 8 | `resolve-weakptrs-once` | Functional change inside function bodies. | |
+
+## Review mode
+
+For a pull request or a changelist under review. Run it before reviewing the code, so the review reads audited code.
+
+- Findings are limited to the files changed by the review, listed as the version control notes describe. Reading and searching the rest of the project stays allowed, e.g. for callers outside the review.
+- `order-definitions-by-header` only places definitions the review added. The rest of each file keeps its order.
+- All steps go to one change, with one build at the end when any build step changed something.
+- The change description joins the subjects of the skills that changed something:
+
+```
+code audit: review fixes
+
+* added missing virtual and override keywords
+* public overrides narrowed to protected, matching base virtuals
+```
