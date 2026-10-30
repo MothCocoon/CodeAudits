@@ -16,7 +16,7 @@ Each skill looks for one kind of issue, lists the findings for approval, then ed
 | `align-override-access` | Aligns access levels of overrides with the base virtual, keeping overrides that outside code calls through the derived type. |
 | `order-definitions-by-header` | Orders function definitions in `.cpp` like declarations in the header. |
 
-### Functional
+### Performance
 
 | Skill | What it does |
 |---|---|
@@ -25,7 +25,7 @@ Each skill looks for one kind of issue, lists the findings for approval, then ed
 
 Every skill ends with a change description. One skill makes one change: a git commit, a Perforce changelist or a Lore commit.
 Version control specifics live in `skills/shared/vcs/`, one file per system.
-To run all of them in the order above, use `run-all-audits`. Its review mode audits only the files of a pull request or changelist and puts all fixes into one change.
+To run each group in the order above, use `run-cosmetic-audits`, then `run-performance-audits`. Their review mode audits only the files of a pull request or changelist and puts each group's fixes into one change.
 
 ## Install
 
