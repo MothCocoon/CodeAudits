@@ -5,6 +5,7 @@
 import json
 import os
 import re
+import sys
 import tempfile
 
 
@@ -312,3 +313,13 @@ class HeaderIndex:
 
     def relpath(self, cls):
         return os.path.relpath(cls["file"], self.source_dir)
+
+    def audited_classes(self, files):
+        # source classes declared in the given headers, all of them when no header is given
+        if not files:
+            return list(self.source_classes.values())
+        for f in files:
+            if not os.path.isfile(f):
+                print("header not found: " + f, file=sys.stderr)
+        wanted = {os.path.normcase(os.path.abspath(f)) for f in files}
+        return [cls for cls in self.source_classes.values() if os.path.normcase(os.path.abspath(cls["file"])) in wanted]

@@ -1,5 +1,6 @@
 # Lists overrides whose access level differs from the nearest base declaration of the same virtual.
-# Usage: python -I access_audit.py <SourceDir> <EngineDir>
+# Usage: python -I access_audit.py <SourceDir> <EngineDir> [<Header>...]
+# Headers limit the reported classes to those declared in them.
 # Output: TSV rows <file:line> <class> <method> <access> <base access> <base class> <base file:line>
 
 import os
@@ -11,7 +12,7 @@ import ue_headers
 index = ue_headers.HeaderIndex(sys.argv[1], sys.argv[2])
 
 rows = []
-for cls in index.source_classes.values():
+for cls in index.audited_classes(sys.argv[3:]):
     for method, decls in cls["methods"].items():
         if method == ue_headers.DESTRUCTOR:
             continue

@@ -1,5 +1,6 @@
 # Lists method declarations missing `virtual` or `override` in a source tree.
-# Usage: python -I override_audit.py <SourceDir> <EngineDir>
+# Usage: python -I override_audit.py <SourceDir> <EngineDir> [<Header>...]
+# Headers limit the reported classes to those declared in them.
 # Output: TSV rows <category> <file:line> <class> <method> <base class>
 
 import os
@@ -11,7 +12,7 @@ import ue_headers
 index = ue_headers.HeaderIndex(sys.argv[1], sys.argv[2])
 
 rows = []
-for cls in index.source_classes.values():
+for cls in index.audited_classes(sys.argv[3:]):
     for method, decls in cls["methods"].items():
         for decl in decls:
             if decl["virtual"] and decl["override"]:

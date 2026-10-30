@@ -24,6 +24,8 @@ python -I "<skill folder>/scripts/access_audit.py" "<source>" "<engine>/Engine"
 source build registered under `HKEY_CURRENT_USER\Software\Epic Games\Unreal Engine\Builds`.
 Ask the user when the engine can't be found.
 The first run indexes engine headers into the temp folder, later runs reuse the index.
+Header paths after `<engine>/Engine` limit the output to classes declared in them, e.g. the headers of a review.
+Base classes are still resolved across the whole `<source>`.
 
 Each row gives the override, its access, the base access and the base declaration with file:line.
 Overrides whose base wasn't found go to stderr, usually a base under a disabled macro.
