@@ -22,7 +22,6 @@ Each skill looks for one kind of issue, lists the findings for approval, then ed
 |---|---|
 | `fix-tobjectptr-usage` | Replaces raw object pointers in UPROPERTY members with `TObjectPtr` and removes redundant `nullptr` initializers of `TObjectPtr`. |
 | `resolve-weakptrs-once` | Resolves each weak pointer once into a local and adds missing null checks. |
-| `replace-tsubclassof` | Switches serialized `TSubclassOf` references to `TSoftClassPtr` where it removes a hard load. |
 
 Every skill ends with a change description. One skill makes one change: a git commit, a Perforce changelist or a Lore commit.
 Version control specifics live in `skills/shared/vcs/`, one file per system.

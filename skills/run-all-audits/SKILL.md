@@ -35,7 +35,6 @@ The user may skip steps or stop the run, the order of the remaining steps stays.
 |---|---|---|---|
 | 7 | `fix-tobjectptr-usage` | Type fixes in declarations and their call sites. | yes |
 | 8 | `resolve-weakptrs-once` | Functional change inside function bodies. | |
-| 9 | `replace-tsubclassof` | Functional change: getter API and its callers. | yes |
 
 ## Review mode
 
