@@ -36,6 +36,4 @@ code audit: removed pointless WITH_EDITOR guards from the editor module
 
 ```
 code audit: removed redundant Slate optimization macros
-
-Optimizations were disabled in a few Slate classes for no reason. This might have been useful with older MSVC versions.
 ```

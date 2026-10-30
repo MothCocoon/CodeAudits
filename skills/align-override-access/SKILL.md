@@ -79,12 +79,8 @@ Narrowing and widening go to separate changes.
 
 ```
 code audit: public overrides narrowed to protected, matching base virtuals
-
-Overrides no longer expose to outside callers functions that the base class keeps protected.
 ```
 
 ```
 code audit: protected overrides widened to public, matching base virtuals
-
-Overrides are now callable through the derived type wherever the base class allows it.
 ```
